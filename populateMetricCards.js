@@ -831,16 +831,27 @@ function setHeatmapCellValue(cell, value, min, max) {
   // Set the text
   cell.textContent = value.toFixed(1) + '%';
   
-  // Calculate the heat level (1-5)
-  const range = max - min;
-  const normalizedValue = (value - min) / range;
-  let heatLevel = Math.ceil(normalizedValue * 5);
+  // Get the current view type to determine if we're in a comparison view
+  const heatmapViewSelect = document.getElementById('heatmap-view');
+  const viewType = heatmapViewSelect ? heatmapViewSelect.value : 'current';
   
-  // Clamp to 1-5
-  heatLevel = Math.max(1, Math.min(5, heatLevel));
-  
-  // Set the class
-  cell.classList.add(`heat-level-${heatLevel}`);
+  // Check if we're in a comparison view and the value is negative
+  if ((viewType === 'vs-target' || viewType === 'vs-q4' || viewType === 'vs-q1-ly') && value < 0) {
+    // For negative values in comparison views, use the negative class
+    cell.classList.add('heat-level-negative');
+  } else {
+    // For positive values or current values view, use the regular heat levels
+    // Calculate the heat level (1-5)
+    const range = max - min;
+    const normalizedValue = (value - min) / range;
+    let heatLevel = Math.ceil(normalizedValue * 5);
+    
+    // Clamp to 1-5
+    heatLevel = Math.max(1, Math.min(5, heatLevel));
+    
+    // Set the class
+    cell.classList.add(`heat-level-${heatLevel}`);
+  }
 }
 
 /**

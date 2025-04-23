@@ -1033,6 +1033,12 @@ p {
     color: white; 
 }
 
+/* Negative value in heatmap */
+.heat-level-negative {
+    background-color: rgba(234, 67, 53, 0.9); 
+    color: white;
+}
+
 /* Comparison table cell styling */
 .comparison-value {
     font-weight: 600;
