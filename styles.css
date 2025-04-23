@@ -746,6 +746,7 @@ p {
 
 /* Market Performance Table */
 .market-table-container {
+    display: block; /* Visible by default on desktop */
     overflow-x: auto;
     margin-bottom: 1.75rem;
 }
@@ -836,8 +837,8 @@ p {
 }
 
 /* Mobile-friendly market cards */
-.market-cards {
-    display: none; /* Hidden by default, shown on mobile */
+.market-cards-container, #market-cards-container {
+    display: none; /* Hidden by default on desktop */
     flex-direction: column;
     gap: 1rem;
     margin-bottom: 1.75rem;
@@ -1334,13 +1335,36 @@ p {
         max-width: 70%;
     }
     
-    /* Hide table and show cards on mobile */
+    /* Keep card view as default on mobile */
     .market-table-container {
         display: none;
     }
     
-    .market-cards {
+    .market-cards-container {
         display: flex;
+    }
+    
+    /* Add a toggle button to switch between views */
+    .view-toggle {
+        display: flex;
+        justify-content: center;
+        margin: 1rem 0;
+    }
+    
+    .view-toggle button {
+        background-color: var(--gray-200);
+        color: var(--gray-800);
+        border: 1px solid var(--gray-300);
+        padding: 0.5rem 1rem;
+        margin: 0 0.25rem;
+        border-radius: var(--radius-sm);
+        cursor: pointer;
+        transition: var(--transition);
+    }
+    
+    .view-toggle button.active {
+        background-color: var(--primary);
+        color: white;
     }
 }
 

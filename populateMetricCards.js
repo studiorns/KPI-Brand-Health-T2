@@ -546,24 +546,24 @@ function updateMarketCards(markets, metric) {
       
       // Card header
       const header = document.createElement('div');
-      header.className = 'market-card-header';
+      header.className = 'market-card__header';
       
       const name = document.createElement('div');
-      name.className = 'market-card-name';
+      name.className = 'market-card__name';
       name.textContent = market.name;
       
       const value = document.createElement('div');
-      value.className = 'market-card-value';
+      value.className = 'market-card__value';
       value.textContent = `${market.currentValue.toFixed(1)}%`;
       
-      const toggle = document.createElement('button');
-      toggle.className = 'market-card-toggle';
-      toggle.innerHTML = '<i class="fas fa-chevron-down"></i>';
-      toggle.addEventListener('click', function() {
-        const body = this.closest('.market-card').querySelector('.market-card-body');
-        body.classList.toggle('expanded');
-        this.classList.toggle('expanded');
-      });
+        const toggle = document.createElement('button');
+        toggle.className = 'market-card__toggle';
+        toggle.innerHTML = '<i class="fas fa-chevron-down"></i>';
+        toggle.addEventListener('click', function() {
+          const body = this.closest('.market-card').querySelector('.market-card__body');
+          body.classList.toggle('market-card__body--expanded');
+          this.classList.toggle('market-card__toggle--expanded');
+        });
       
       header.appendChild(name);
       header.appendChild(value);
@@ -571,21 +571,21 @@ function updateMarketCards(markets, metric) {
       
       // Card body
       const body = document.createElement('div');
-      body.className = 'market-card-body';
+      body.className = 'market-card__body';
       
       const stats = document.createElement('div');
-      stats.className = 'market-card-stats';
+      stats.className = 'market-card__stats';
       
       // Target stat
       const targetStat = document.createElement('div');
-      targetStat.className = 'market-card-stat';
+      targetStat.className = 'market-card__stat';
       
       const targetLabel = document.createElement('div');
-      targetLabel.className = 'market-card-stat-label';
+      targetLabel.className = 'market-card__stat-label';
       targetLabel.textContent = 'Target';
       
       const targetValue = document.createElement('div');
-      targetValue.className = 'market-card-stat-value';
+      targetValue.className = 'market-card__stat-value';
       targetValue.textContent = `${market.targetValue.toFixed(1)}%`;
       
       targetStat.appendChild(targetLabel);
@@ -593,14 +593,14 @@ function updateMarketCards(markets, metric) {
       
       // Vs target stat
       const vsTargetStat = document.createElement('div');
-      vsTargetStat.className = 'market-card-stat';
+      vsTargetStat.className = 'market-card__stat';
       
       const vsTargetLabel = document.createElement('div');
-      vsTargetLabel.className = 'market-card-stat-label';
+      vsTargetLabel.className = 'market-card__stat-label';
       vsTargetLabel.textContent = 'Vs Target';
       
       const vsTargetValue = document.createElement('div');
-      vsTargetValue.className = 'market-card-stat-value';
+      vsTargetValue.className = 'market-card__stat-value';
       vsTargetValue.style.color = market.vsTarget > 0 ? 'var(--secondary)' : market.vsTarget < 0 ? 'var(--danger)' : 'var(--warning)';
       vsTargetValue.textContent = `${market.vsTarget > 0 ? '+' : ''}${market.vsTarget.toFixed(1)}%`;
       
@@ -609,14 +609,14 @@ function updateMarketCards(markets, metric) {
       
       // Vs Q4 stat
       const vsQ4Stat = document.createElement('div');
-      vsQ4Stat.className = 'market-card-stat';
+      vsQ4Stat.className = 'market-card__stat';
       
       const vsQ4Label = document.createElement('div');
-      vsQ4Label.className = 'market-card-stat-label';
+      vsQ4Label.className = 'market-card__stat-label';
       vsQ4Label.textContent = 'Vs Q4 2024';
       
       const vsQ4Value = document.createElement('div');
-      vsQ4Value.className = 'market-card-stat-value';
+      vsQ4Value.className = 'market-card__stat-value';
       vsQ4Value.style.color = market.vsQ4 > 0 ? 'var(--secondary)' : market.vsQ4 < 0 ? 'var(--danger)' : 'var(--warning)';
       vsQ4Value.textContent = `${market.vsQ4 > 0 ? '+' : ''}${market.vsQ4.toFixed(1)}%`;
       
@@ -625,14 +625,14 @@ function updateMarketCards(markets, metric) {
       
       // Vs Q1 last year stat
       const vsQ1LastYearStat = document.createElement('div');
-      vsQ1LastYearStat.className = 'market-card-stat';
+      vsQ1LastYearStat.className = 'market-card__stat';
       
       const vsQ1LastYearLabel = document.createElement('div');
-      vsQ1LastYearLabel.className = 'market-card-stat-label';
+      vsQ1LastYearLabel.className = 'market-card__stat-label';
       vsQ1LastYearLabel.textContent = 'Vs Q1 2024';
       
       const vsQ1LastYearValue = document.createElement('div');
-      vsQ1LastYearValue.className = 'market-card-stat-value';
+      vsQ1LastYearValue.className = 'market-card__stat-value';
       vsQ1LastYearValue.style.color = market.vsQ1LastYear > 0 ? 'var(--secondary)' : market.vsQ1LastYear < 0 ? 'var(--danger)' : 'var(--warning)';
       vsQ1LastYearValue.textContent = `${market.vsQ1LastYear > 0 ? '+' : ''}${market.vsQ1LastYear.toFixed(1)}%`;
       
@@ -870,3 +870,125 @@ function initializeVisibleCharts() {
     }
   });
 }
+
+// Make functions globally available
+window.parseCSVData = parseCSVData;
+window.populateMetricCards = populateMetricCards;
+window.updateComparisonTable = updateComparisonTable;
+window.updateMarketCards = updateMarketCards;
+window.initializeMarketHeatmap = initializeMarketHeatmap;
+window.initializeVisibleCharts = initializeVisibleCharts;
+window.initializeMarketComparisonTable = initializeMarketComparisonTable;
+
+/**
+ * Initialize the view toggle functionality
+ */
+function initializeViewToggle() {
+  console.log('Initializing view toggle...');
+  
+  const tableViewBtn = document.getElementById('table-view-btn');
+  const cardViewBtn = document.getElementById('card-view-btn');
+  const tableContainer = document.querySelector('.market-table-container');
+  const cardContainer = document.getElementById('market-cards-container');
+  
+  if (tableViewBtn && cardViewBtn && tableContainer && cardContainer) {
+    // Set initial state based on screen size
+    if (window.innerWidth <= 768) {
+      // Mobile: Card view as default
+      tableContainer.style.display = 'none';
+      cardContainer.style.display = 'flex';
+      cardViewBtn.classList.add('active');
+      tableViewBtn.classList.remove('active');
+      console.log('Mobile detected, setting card view as default');
+    } else {
+      // Desktop: Table view as default
+      tableContainer.style.display = 'block';
+      cardContainer.style.display = 'none';
+      tableViewBtn.classList.add('active');
+      cardViewBtn.classList.remove('active');
+      console.log('Desktop detected, setting table view as default');
+    }
+    
+    // Add event listeners
+    tableViewBtn.addEventListener('click', function() {
+      tableContainer.style.display = 'block';
+      cardContainer.style.display = 'none';
+      tableViewBtn.classList.add('active');
+      cardViewBtn.classList.remove('active');
+    });
+    
+    cardViewBtn.addEventListener('click', function() {
+      tableContainer.style.display = 'none';
+      cardContainer.style.display = 'flex';
+      cardViewBtn.classList.add('active');
+      tableViewBtn.classList.remove('active');
+    });
+    
+    // Add window resize listener to handle orientation changes
+    window.addEventListener('resize', function() {
+      // Only auto-switch if the user hasn't manually toggled the view
+      const userHasToggled = sessionStorage.getItem('viewToggled');
+      
+      if (!userHasToggled) {
+        if (window.innerWidth <= 768) {
+          // Switch to card view on mobile
+          tableContainer.style.display = 'none';
+          cardContainer.style.display = 'flex';
+          cardViewBtn.classList.add('active');
+          tableViewBtn.classList.remove('active');
+        } else {
+          // Switch to table view on desktop
+          tableContainer.style.display = 'block';
+          cardContainer.style.display = 'none';
+          tableViewBtn.classList.add('active');
+          cardViewBtn.classList.remove('active');
+        }
+      }
+    });
+    
+    // Track when user manually toggles the view
+    tableViewBtn.addEventListener('click', function() {
+      sessionStorage.setItem('viewToggled', 'true');
+    });
+    
+    cardViewBtn.addEventListener('click', function() {
+      sessionStorage.setItem('viewToggled', 'true');
+    });
+    
+    console.log('View toggle initialized with responsive defaults');
+  } else {
+    console.warn('Could not initialize view toggle - missing elements');
+  }
+}
+
+// Initialize when the DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+  console.log('DOM loaded, initializing dashboard...');
+  
+  // Check if CSV data is available
+  if (window.csvData) {
+    // Parse the CSV data
+    const data = parseCSVData(window.csvData);
+    
+    // Store the data in a global variable for charts to use
+    window.brandHealthData = data;
+    
+    // Populate the metric cards
+    populateMetricCards(data);
+  } else {
+    console.log('No CSV data found, using default data');
+    // Use default data
+    window.brandHealthData = parseCSVData('dummy_data');
+  }
+  
+  // Initialize the market comparison table
+  initializeMarketComparisonTable();
+  
+  // Initialize the view toggle
+  initializeViewToggle();
+  
+  // Initialize visible charts
+  initializeVisibleCharts();
+  
+  console.log('Dashboard initialization complete');
+});
