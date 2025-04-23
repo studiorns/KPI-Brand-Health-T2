@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brand Health KPI Dashboard - T2 Markets</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@2.1.0"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header__logo-container">
+                <a href="https://studiorns.github.io/KPI-Tracker-Repository/" style="text-decoration: none; color: inherit;">
+                    <div class="soner-logo">
+                        S<div class="soner-radar">
+                            <div class="soner-scanner"></div>
+                            <div class="soner-blip"></div>
+                            <div class="soner-blip"></div>
+                        </div>NER
+                        <span class="soner-tagline">Visual Intelligence</span>
+                    </div>
+                </a>
+            </div>
+            <h1 class="header__title">Brand Health KPI Dashboard - T2 Markets</h1>
+            <p class="header__subtitle">Q1 2025 Performance Analysis</p>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="dashboard-section" style="min-height: auto; overflow: visible;">
+            <div class="section-header">
+                <h2 class="section-title"><i class="fas fa-chart-pie section-title__icon"></i> Overall Brand Health Metrics</h2>
+                <button class="section-toggle" aria-label="Toggle section" aria-expanded="true">
+                    <i class="fas fa-chevron-up section-toggle__icon"></i>
+                </button>
+            </div>
+            <div class="section-content">
+                <div class="insight-summary" style="padding: 25px; max-width: 100%;">
+                    <h3 class="insight-summary__title"><i class="fas fa-lightbulb insight-summary__icon"></i> Key Insights</h3>
+                    <p class="insight-summary__text">Brand Health metrics for Abu Dhabi's Tier 2 markets show positive trends in Q1 2025. Awareness is performing well at 58.6% (1.0% above target), while Familiarity has seen the most significant year-over-year growth at 12.8%. Consideration and Intent metrics are showing steady improvement with 0.6% and 0.4% above target respectively.</p>
+                </div>
+                
+                <div class="metrics-grid" id="overall-metrics-container">
+                    <!-- Overall metric cards will be dynamically populated here -->
+                    <div class="metric-card metric-card--awareness">
+                        <div class="metric-name"><i class="fas fa-bullseye metric-name__icon"></i> Awareness</div>
+                        <div class="metric-value">58.6%</div>
+                        <div class="metric-stats">
+                            <div class="metric-stat">
+                                <span class="stat-label">vs Q1 2025 Target</span>
+                                <span class="stat-value stat-value--positive">+1.0%</span>
+                            </div>
+                            <div class="metric-stat">
+                                <span class="stat-label">vs Q4 2024</span>
+                                <span class="stat-value stat-value--positive">+1.6%</span>
+                            </div>
+                            <div class="metric-stat">
+                                <span class="stat-label">vs Q1 2024</span>
+                                <span class="stat-value stat-value--positive">+3.6%</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="metric-card metric-card--familiarity">
+                        <div class="metric-name"><i class="fas fa-book-open metric-name__icon"></i> Familiarity</div>
+                        <div class="metric-value">39.2%</div>
+                        <div class="metric-stats">
+                            <div class="metric-stat">
+                                <span class="stat-label">vs Q1 2025 Target</span>
+                                <span class="stat-value stat-value--positive">+0.8%</span>
+                            </div>
+                            <div class="metric-stat">
+                                <span class="stat-label">vs Q4 2024</span>
+                                <span class="stat-value stat-value--positive">+1.2%</span>
+                            </div>
+                            <div class="metric-stat">
+                                <span class="stat-label">vs Q1 2024</span>
+                                <span class="stat-value stat-value--positive">+12.8%</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="metric-card metric-card--consideration">
+                        <div class="metric-name"><i class="fas fa-search metric-name__icon"></i> Consideration</div>
+                        <div class="metric-value">27.5%</div>
+                        <div class="metric-stats">
+                            <div class="metric-stat">
+                                <span class="stat-label">vs Q1 2025 Target</span>
+                                <span class="stat-value stat-value--positive">+0.6%</span>
+                            </div>
+                            <div class="metric-stat">
+                                <span class="stat-label">vs Q4 2024</span>
+                                <span class="stat-value stat-value--positive">+1.2%</span>
+                            </div>
+                            <div class="metric-stat">
+                                <span class="stat-label">vs Q1 2024</span>
+                                <span class="stat-value stat-value--positive">+4.0%</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="metric-card metric-card--intent">
+                        <div class="metric-name"><i class="fas fa-plane-departure metric-name__icon"></i> Intent</div>
+                        <div class="metric-value">14.6%</div>
+                        <div class="metric-stats">
+                            <div class="metric-stat">
+                                <span class="stat-label">vs Q1 2025 Target</span>
+                                <span class="stat-value stat-value--positive">+0.4%</span>
+                            </div>
+                            <div class="metric-stat">
+                                <span class="stat-label">vs Q4 2024</span>
+                                <span class="stat-value stat-value--positive">+0.8%</span>
+                            </div>
+                            <div class="metric-stat">
+                                <span class="stat-label">vs Q1 2024</span>
+                                <span class="stat-value stat-value--positive">+2.1%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="dashboard-section" style="min-height: 1200px; overflow: visible;">
+            <div class="section-header">
+                <h2 class="section-title"><i class="fas fa-globe section-title__icon"></i> Market Performance</h2>
+                <button class="section-toggle" aria-label="Toggle section" aria-expanded="true">
+                    <i class="fas fa-chevron-up section-toggle__icon"></i>
+                </button>
+            </div>
+            <div class="section-content">
+                <div class="insight-summary" style="padding: 25px; max-width: 100%;">
+                    <h3 class="insight-summary__title"><i class="fas fa-lightbulb insight-summary__icon"></i> Market Insights</h3>
+                    <p class="insight-summary__text">Bahrain, Qatar, and Oman are the top performing markets across all metrics, with Bahrain showing the highest Awareness (93.6%) and Oman leading in Intent (37.1%). South Korea and Canada remain the most challenging markets with the lowest scores across most metrics, though they show consistent improvement year-over-year.</p>
+                </div>
+                
+        <div class="tab-container market-performance-tabs">
+            <div class="tab-buttons">
+                <button class="tab-btn tab-btn--active" data-tab="market-comparison">Comparative Analysis</button>
+                <button class="tab-btn" data-tab="market-heatmap">Performance Heatmap</button>
+            </div>
+            
+            <div class="tab-content tab-content--active" id="market-comparison-tab">
+                <div class="table-controls">
+                    <div class="table-filter">
+                        <label for="metric-filter">Metric:</label>
+                        <select id="metric-filter" class="filter-select">
+                            <option value="awareness">Awareness</option>
+                            <option value="familiarity">Familiarity</option>
+                            <option value="consideration">Consideration</option>
+                            <option value="intent">Intent</option>
+                        </select>
+                    </div>
+                    <div class="table-sort">
+                        <label for="sort-by">Sort by:</label>
+                        <select id="sort-by" class="filter-select">
+                            <option value="value">Current Value</option>
+                            <option value="vs-target">Vs Target</option>
+                            <option value="vs-q4">Vs Q4 2024</option>
+                            <option value="vs-q1-ly">Vs Q1 2024</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <!-- Desktop table view -->
+                <div class="market-table-container">
+                    <table class="market-table" id="market-comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Market</th>
+                                <th>Current Value</th>
+                                <th>Target</th>
+                                <th>Vs Q1 2025 Target</th>
+                                <th>Vs Q4 2024</th>
+                                <th>Vs Q1 2024</th>
+                            </tr>
+                        </thead>
+                        <tbody id="comparison-table-body">
+                            <!-- Will be populated dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+                
+                <!-- Mobile card view -->
+                <div class="market-cards" id="market-cards-container">
+                    <!-- Will be populated dynamically -->
+                </div>
+            </div>
+            
+            <div class="tab-content" id="market-heatmap-tab">
+                <div class="heatmap-controls">
+                    <div class="heatmap-filter">
+                        <label for="heatmap-view">View:</label>
+                        <select id="heatmap-view" class="filter-select">
+                            <option value="current">Current Values</option>
+                            <option value="vs-target">Vs Target</option>
+                            <option value="vs-q4">Vs Q4 2024</option>
+                            <option value="vs-q1-ly">Vs Q1 2024</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="heatmap-container" id="market-heatmap">
+                    <!-- Will be populated dynamically -->
+                </div>
+            </div>
+        </div>
+                
+        <div class="midpoint-info" style="background-color: rgba(0, 0, 0, 0.2); border-radius: 6px; padding: 12px 20px; margin-bottom: 15px; display: flex; justify-content: center; align-items: center; gap: 30px;">
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <div style="width: 12px; height: 12px; background-color: rgba(255, 255, 255, 0.7); border-radius: 50%;"></div>
+                <span id="performance-midpoint" style="font-weight: 500; color: rgba(255, 255, 255, 0.9);">Mean Performance: 33.6%</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <div style="width: 12px; height: 12px; background-color: rgba(255, 255, 255, 0.7); border-radius: 50%;"></div>
+                <span id="growth-midpoint" style="font-weight: 500; color: rgba(255, 255, 255, 0.9);">Mean Growth: 3.9%</span>
+            </div>
+        </div>
+        
+        <div class="chart-container" style="height: 600px;">
+            <canvas id="market-quadrant-chart" data-lazy="true"></canvas>
+        </div>
+        
+<div class="insight-summary" style="background-color: var(--primary-light); margin-top: 20px; height: auto; overflow: visible; padding: 25px; max-width: 100%;">
+    <h3><i class="fas fa-info-circle"></i> Market Quadrant Analysis</h3>
+    <p>This analysis uses dynamic mean-based midpoints (Performance = 33.6%, Growth = 3.9%) to position markets in quadrants based on their performance and growth metrics. Performance is calculated as the average of Awareness, Consideration, and Intent metrics, while Growth represents the average year-over-year change in these same metrics. The chart displays Performance on the X-axis and Growth on the Y-axis for better visualization on mobile devices.</p>
+    
+    <div class="market-quadrant-grid" style="min-height: 400px; margin-top: 30px; margin-bottom: 30px;">
+        <!-- Top row: matches the top of the chart -->
+        <div class="quadrant-box quadrant-box--opportunity" style="background-color: #332a1a; padding: 20px; min-height: 150px;">
+            <h4 class="quadrant-box__title"><i class="fas fa-chart-line quadrant-box__icon"></i> Growth Opportunities</h4>
+            <p class="quadrant-box__subtitle">High Growth (Y-axis), Low Performance (X-axis) <i class="fas fa-arrows-alt fa-xs" title="Axis orientation"></i></p>
+            <p class="quadrant-box__text"><strong>Markets:</strong> <span id="question-markets">Loading...</span></p>
+            <p class="quadrant-box__text"><strong>Characteristics:</strong> Y-axis (Growth) ≥ 3.9% and X-axis (Performance) < 33.6%</p>
+            <p class="quadrant-box__text"><strong>Strategy:</strong> Selective investment to convert potential into performance</p>
+        </div>
+        
+        <div class="quadrant-box quadrant-box--leading" style="background-color: #1a2233; padding: 20px; min-height: 150px;">
+            <h4 class="quadrant-box__title"><i class="fas fa-star quadrant-box__icon"></i> Leading Markets</h4>
+            <p class="quadrant-box__subtitle">High Growth (Y-axis), High Performance (X-axis) <i class="fas fa-arrows-alt fa-xs" title="Axis orientation"></i></p>
+            <p class="quadrant-box__text"><strong>Markets:</strong> <span id="star-markets">Loading...</span></p>
+            <p class="quadrant-box__text"><strong>Characteristics:</strong> Y-axis (Growth) ≥ 3.9% and X-axis (Performance) ≥ 33.6%</p>
+            <p class="quadrant-box__text"><strong>Strategy:</strong> Invest to maintain growth and capitalize on strong position</p>
+        </div>
+        
+        <!-- Bottom row: matches the bottom of the chart -->
+        <div class="quadrant-box quadrant-box--underperforming" style="background-color: #331f1e; padding: 20px; min-height: 150px;">
+            <h4 class="quadrant-box__title"><i class="fas fa-arrow-trend-down quadrant-box__icon"></i> Underperforming Markets</h4>
+            <p class="quadrant-box__subtitle">Low Growth (Y-axis), Low Performance (X-axis) <i class="fas fa-arrows-alt fa-xs" title="Axis orientation"></i></p>
+            <p class="quadrant-box__text"><strong>Markets:</strong> <span id="dog-markets">Loading...</span></p>
+            <p class="quadrant-box__text"><strong>Characteristics:</strong> Y-axis (Growth) < 3.9% and X-axis (Performance) < 33.6%</p>
+            <p class="quadrant-box__text"><strong>Strategy:</strong> Consider reducing investment or implementing recovery strategies</p>
+        </div>
+        
+        <div class="quadrant-box quadrant-box--stable" style="background-color: #1a2a1e; padding: 20px; min-height: 150px;">
+            <h4 class="quadrant-box__title"><i class="fas fa-balance-scale quadrant-box__icon"></i> Stable Performers</h4>
+            <p class="quadrant-box__subtitle">Low Growth (Y-axis), High Performance (X-axis) <i class="fas fa-arrows-alt fa-xs" title="Axis orientation"></i></p>
+            <p class="quadrant-box__text"><strong>Markets:</strong> <span id="cashcow-markets">Loading...</span></p>
+            <p class="quadrant-box__text"><strong>Characteristics:</strong> Y-axis (Growth) < 3.9% and X-axis (Performance) ≥ 33.6%</p>
+            <p class="quadrant-box__text"><strong>Strategy:</strong> Maintain position while extracting value to fund other initiatives</p>
+        </div>
+    </div>
+    
+    <p style="margin-top: 15px;"><strong>Key Insight:</strong> These dynamic mean-based midpoint values (33.6% for Performance and 3.9% for Growth) provide an objective classification of markets based on their relative performance within the dataset. This data-driven approach ensures markets are classified based on their actual performance and growth metrics, allowing for more informed strategic investment decisions.</p>
+</div>
+            </div>
+        </div>
+        
+        <div class="dashboard-section" id="markets-at-risk">
+            <div class="section-header">
+                <h2 class="section-title"><i class="fas fa-exclamation-triangle"></i> Markets Requiring Attention</h2>
+                <button class="section-toggle" aria-label="Toggle section" aria-expanded="true">
+                    <i class="fas fa-chevron-up"></i>
+                </button>
+            </div>
+            <div class="section-content">
+                <div class="insight-summary" style="background-color: var(--danger-light); border-left-color: var(--danger); padding: 25px; max-width: 100%;">
+                    <h3 style="color: var(--danger);"><i class="fas fa-exclamation-circle"></i> Priority Markets</h3>
+                    <p>The following markets show metrics that are below target or have negative trends compared to previous periods. These markets may require additional focus and strategic interventions to improve performance.</p>
+                </div>
+                
+                <div class="metrics-grid" id="at-risk-markets-container">
+                    <!-- Will be populated dynamically with markets requiring attention -->
+                    <div class="metric-card" style="border-color: var(--danger); background: linear-gradient(135deg, var(--gray-100) 0%, var(--danger-light) 100%);">
+                        <div class="metric-name" style="color: var(--danger);"><i class="fas fa-map-marker-alt"></i> South Korea</div>
+                        <div class="metric-value">27.6%</div>
+                        <div class="metric-stats">
+                            <div class="metric-stat">
+                                <span class="stat-label">Awareness</span>
+                                <span class="stat-value negative">-0.3%</span>
+                            </div>
+                            <div class="metric-stat">
+                                <span class="stat-label">vs Q1 2025 Target</span>
+                                <span class="stat-value negative">Below Target</span>
+                            </div>
+                            <div class="metric-stat">
+                                <span class="stat-label">Key Issue</span>
+                                <span class="stat-value negative">Lowest Awareness</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="metric-card" style="border-color: var(--warning); background: linear-gradient(135deg, var(--gray-100) 0%, var(--warning-light) 100%);">
+                        <div class="metric-name" style="color: var(--warning);"><i class="fas fa-map-marker-alt"></i> Japan</div>
+                        <div class="metric-value">9.9%</div>
+                        <div class="metric-stats">
+                            <div class="metric-stat">
+                                <span class="stat-label">Familiarity</span>
+                                <span class="stat-value positive">+1.0%</span>
+                            </div>
+                            <div class="metric-stat">
+                                <span class="stat-label">vs Q1 2025 Target</span>
+                                <span class="stat-value positive">Above Target</span>
+                            </div>
+                            <div class="metric-stat">
+                                <span class="stat-label">Key Issue</span>
+                                <span class="stat-value negative">Lowest Familiarity</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="metric-card" style="border-color: var(--warning); background: linear-gradient(135deg, var(--gray-100) 0%, var(--warning-light) 100%);">
+                        <div class="metric-name" style="color: var(--warning);"><i class="fas fa-map-marker-alt"></i> Poland</div>
+                        <div class="metric-value">28.0%</div>
+                        <div class="metric-stats">
+                            <div class="metric-stat">
+                                <span class="stat-label">Consideration</span>
+                                <span class="stat-value negative">-0.3%</span>
+                            </div>
+                            <div class="metric-stat">
+                                <span class="stat-label">vs Q1 2025 Target</span>
+                                <span class="stat-value negative">Below Target</span>
+                            </div>
+                            <div class="metric-stat">
+                                <span class="stat-label">Key Issue</span>
+                                <span class="stat-value negative">Declining Consideration</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="metric-card" style="border-color: var(--warning); background: linear-gradient(135deg, var(--gray-100) 0%, var(--warning-light) 100%);">
+                        <div class="metric-name" style="color: var(--warning);"><i class="fas fa-map-marker-alt"></i> Uzbekistan</div>
+                        <div class="metric-value">10.3%</div>
+                        <div class="metric-stats">
+                            <div class="metric-stat">
+                                <span class="stat-label">Intent</span>
+                                <span class="stat-value negative">-0.4%</span>
+                            </div>
+                            <div class="metric-stat">
+                                <span class="stat-label">vs Q1 2025 Target</span>
+                                <span class="stat-value negative">Below Target</span>
+                            </div>
+                            <div class="metric-stat">
+                                <span class="stat-label">Key Issue</span>
+                                <span class="stat-value positive">Strong YoY Growth (+4.6%)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="insight-summary" style="background-color: var(--warning-light); border-left-color: var(--warning); padding: 25px; max-width: 100%;">
+                    <h3 style="color: var(--warning);"><i class="fas fa-lightbulb"></i> Recommended Actions</h3>
+                    <p><strong>South Korea:</strong> Increase awareness campaigns and cultural engagement activities to boost the low awareness score (27.6%).</p>
+                    <p><strong>Japan:</strong> Focus on building familiarity through targeted content and partnerships to improve the low familiarity score (9.9%).</p>
+                    <p><strong>Poland:</strong> Address the declining consideration (-0.3% vs target) through enhanced destination marketing and travel trade engagement.</p>
+                    <p><strong>Uzbekistan:</strong> Capitalize on strong year-over-year growth while addressing the below-target intent metric through conversion-focused campaigns.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="dashboard-section" id="metric-details">
+            <div class="section-header">
+                <h2 class="section-title"><i class="fas fa-chart-line"></i> Metric Deep Dive</h2>
+                <button class="section-toggle" aria-label="Toggle section" aria-expanded="true">
+                    <i class="fas fa-chevron-up"></i>
+                </button>
+            </div>
+            <div class="section-content">
+                <div class="tab-container">
+                    <div class="tab-buttons">
+                        <button class="tab-btn active tab-btn--active" data-tab="awareness">Awareness</button>
+                        <button class="tab-btn" data-tab="familiarity">Familiarity</button>
+                        <button class="tab-btn" data-tab="consideration">Consideration</button>
+                        <button class="tab-btn" data-tab="intent">Intent</button>
+                    </div>
+                    
+                    <div class="tab-content active tab-content--active" id="awareness-tab">
+                        <h3>Awareness Performance</h3>
+                        <div class="chart-container">
+                            <canvas id="awareness-trend-chart" data-lazy="true"></canvas>
+                        </div>
+                        <div class="chart-container" style="height: 500px; margin-bottom: 28px;">
+                            <canvas id="awareness-market-chart" data-lazy="true"></canvas>
+                        </div>
+                        <div class="chart-container" style="height: 400px;">
+                            <canvas id="awareness-comparison-chart" data-lazy="true"></canvas>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-content" id="familiarity-tab">
+                        <h3>Familiarity Performance</h3>
+                        <div class="chart-container">
+                            <canvas id="familiarity-trend-chart" data-lazy="true"></canvas>
+                        </div>
+                        <div class="chart-container" style="height: 500px; margin-bottom: 28px;">
+                            <canvas id="familiarity-market-chart" data-lazy="true"></canvas>
+                        </div>
+                        <div class="chart-container" style="height: 400px;">
+                            <canvas id="familiarity-comparison-chart" data-lazy="true"></canvas>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-content" id="consideration-tab">
+                        <h3>Consideration Performance</h3>
+                        <div class="chart-container">
+                            <canvas id="consideration-trend-chart" data-lazy="true"></canvas>
+                        </div>
+                        <div class="chart-container" style="height: 500px; margin-bottom: 28px;">
+                            <canvas id="consideration-market-chart" data-lazy="true"></canvas>
+                        </div>
+                        <div class="chart-container" style="height: 400px;">
+                            <canvas id="consideration-comparison-chart" data-lazy="true"></canvas>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-content" id="intent-tab">
+                        <h3>Intent Performance</h3>
+                        <div class="chart-container">
+                            <canvas id="intent-trend-chart" data-lazy="true"></canvas>
+                        </div>
+                        <div class="chart-container" style="height: 500px; margin-bottom: 28px;">
+                            <canvas id="intent-market-chart" data-lazy="true"></canvas>
+                        </div>
+                        <div class="chart-container" style="height: 400px;">
+                            <canvas id="intent-comparison-chart" data-lazy="true"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="dashboard-section" id="future-projections">
+            <div class="section-header">
+                <h2 class="section-title"><i class="fas fa-chart-bar"></i> Future Targets</h2>
+                <button class="section-toggle" aria-label="Toggle section" aria-expanded="true">
+                    <i class="fas fa-chevron-up"></i>
+                </button>
+            </div>
+            <div class="section-content">
+                <div class="insight-summary" style="padding: 25px; max-width: 100%;">
+                    <h3 class="insight-summary__title"><i class="fas fa-lightbulb insight-summary__icon"></i> Target Insights</h3>
+                    <p>The brand health metrics have established targets through 2030. Awareness is targeted to reach 74.4% by 2030, while Familiarity has the most ambitious growth target from 39.2% to 49.5%. Consideration and Intent metrics have targeted growth at a moderate pace, with targets of 34.0% and 19.4% respectively by 2030.</p>
+                </div>
+                
+                <div class="chart-container">
+                    <canvas id="projections-chart" data-lazy="true"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer style="background-color: var(--gray-100); color: var(--gray-700); padding: 20px 0; text-align: center; border-top: 1px solid var(--gray-300); margin-top: 40px;">
+        <div class="container">
+            <p>© 2025 Research & Insights Unit | Strategic Marketing & Communications | Department of Culture and Tourism – Abu Dhabi</p>
+        </div>
+    </footer>
+    
+    <button class="print-btn" title="Print Dashboard" id="print-dashboard">
+        <i class="fas fa-print"></i>
+    </button>
+    
+    <!-- Load JavaScript files -->
+    <script src="Brand Health.js"></script>
+    <script src="populateMetricCards.js"></script>
+    <script src="createCharts.js"></script>
+    <script src="quadrantChart.js"></script>
+    <script src="collapsible.js"></script>
+    
+    <!-- Debugging utility script -->
+    <script>
+        // Wait for everything to load
+        window.addEventListener('load', function() {
+            console.log('Running dashboard diagnostics...');
+            
+            // Check for missing elements
+            function checkElementExists(id, description) {
+                const element = document.getElementById(id);
+                if (!element) {
+                    console.error(`Missing element: ${id} (${description})`);
+                    return false;
+                }
+                return true;
+            }
+            
+            // Check critical elements
+            checkElementExists('market-quadrant-chart', 'Market Quadrant Chart');
+            checkElementExists('market-comparison-tab', 'Market Comparison Tab');
+            checkElementExists('market-heatmap-tab', 'Market Heatmap Tab');
+            checkElementExists('comparison-table-body', 'Comparison Table Body');
+            checkElementExists('market-heatmap', 'Market Heatmap Container');
+            
+            // Check for charts that should be initialized
+            document.querySelectorAll('canvas').forEach(canvas => {
+                if (!canvas.id) {
+                    console.warn('Found canvas without ID');
+                } else if (canvas.getAttribute('data-initialized') !== 'true') {
+                    console.warn(`Chart not initialized: ${canvas.id}`);
+                    
+                    // Try to initialize it
+                    if (typeof window.initializeChart === 'function') {
+                        console.log(`Attempting to initialize chart: ${canvas.id}`);
+                        canvas.setAttribute('data-initialized', 'true');
+                        window.initializeChart(canvas.id);
+                    }
+                }
+            });
+            
+            // Check for tab content visibility
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                const computedStyle = window.getComputedStyle(tab);
+                const isVisible = computedStyle.display !== 'none' && 
+                                computedStyle.visibility !== 'hidden' && 
+                                computedStyle.opacity !== '0';
+                
+                if (!isVisible && !tab.classList.contains('active') && !tab.classList.contains('tab-content--active')) {
+                    console.log(`Tab content hidden as expected: ${tab.id}`);
+                } else if (!isVisible && (tab.classList.contains('active') || tab.classList.contains('tab-content--active'))) {
+                    console.error(`Tab content should be visible but is hidden: ${tab.id}`);
+                    
+                    // Force visibility
+                    tab.style.display = 'block';
+                    tab.style.visibility = 'visible';
+                    tab.style.opacity = '1';
+                }
+            });
+            
+            // Check for window.brandHealthData
+            if (!window.brandHealthData) {
+                console.error('window.brandHealthData is not defined');
+            } else {
+                console.log('window.brandHealthData is defined');
+                
+                // Check for required data properties
+                const requiredProperties = ['overall', 'markets', 'quarterlyData', 'comparisons', 'projections', 'latestData'];
+                requiredProperties.forEach(prop => {
+                    if (!window.brandHealthData[prop]) {
+                        console.error(`Missing required data property: ${prop}`);
+                    }
+                });
+            }
+            
+            // Check for Chart.js plugins
+            if (typeof Chart !== 'undefined') {
+                console.log('Chart.js is loaded');
+                
+                // Check for required plugins
+                if (typeof Chart.registry.getPlugin('annotation') !== 'undefined') {
+                    console.log('Chart.js annotation plugin is loaded');
+                } else {
+                    console.error('Chart.js annotation plugin is not loaded');
+                    
+                    // Try to register it if available
+                    if (window.ChartAnnotation) {
+                        Chart.register(window.ChartAnnotation);
+                        console.log('Registered Chart.js annotation plugin');
+                    }
+                }
+                
+                if (typeof Chart.registry.getPlugin('datalabels') !== 'undefined') {
+                    console.log('Chart.js datalabels plugin is loaded');
+                } else {
+                    console.warn('Chart.js datalabels plugin is not loaded');
+                    
+                    // Try to register it if available
+                    if (window.ChartDataLabels) {
+                        Chart.register(window.ChartDataLabels);
+                        console.log('Registered Chart.js datalabels plugin');
+                    }
+                }
+            } else {
+                console.error('Chart.js is not loaded');
+            }
+            
+            // Add a fallback for tab switching
+            document.querySelectorAll('.tab-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const tabId = this.getAttribute('data-tab');
+                    if (tabId) {
+                        const tabContent = document.getElementById(`${tabId}-tab`);
+                        if (tabContent) {
+                            // Force visibility
+                            tabContent.style.display = 'block';
+                            tabContent.style.visibility = 'visible';
+                            tabContent.style.opacity = '1';
+                            
+                            // Initialize any lazy charts
+                            tabContent.querySelectorAll('canvas[data-lazy="true"]').forEach(canvas => {
+                                if (canvas.getAttribute('data-initialized') !== 'true' && typeof window.initializeChart === 'function') {
+                                    canvas.setAttribute('data-initialized', 'true');
+                                    window.initializeChart(canvas.id);
+                                }
+                            });
+                        }
+                    }
+                });
+            });
+            
+            console.log('Dashboard diagnostics complete');
+        });
+    </script>
+</body>
+</html>

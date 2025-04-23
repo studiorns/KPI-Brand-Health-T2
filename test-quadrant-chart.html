@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Market Quadrant Chart</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+    <style>
+        body {
+            background-color: #000000;
+            color: #e0e0e0;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .chart-container {
+            height: 450px;
+            background-color: #121212;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .quadrant-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .quadrant-box {
+            background-color: #1e1e1e;
+            border-radius: 8px;
+            padding: 15px;
+        }
+        .quadrant-box h3 {
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Market Quadrant Chart Test</h1>
+        
+        <div class="chart-container">
+            <canvas id="market-quadrant-chart"></canvas>
+        </div>
+        
+        <div class="quadrant-info">
+            <div class="quadrant-box">
+                <h3>Leading Markets</h3>
+                <p><strong>Markets:</strong> <span id="star-markets">Loading...</span></p>
+            </div>
+            <div class="quadrant-box">
+                <h3>Growth Opportunities</h3>
+                <p><strong>Markets:</strong> <span id="question-markets">Loading...</span></p>
+            </div>
+            <div class="quadrant-box">
+                <h3>Stable Performers</h3>
+                <p><strong>Markets:</strong> <span id="cashcow-markets">Loading...</span></p>
+            </div>
+            <div class="quadrant-box">
+                <h3>Underperforming Markets</h3>
+                <p><strong>Markets:</strong> <span id="dog-markets">Loading...</span></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Market colors for consistent representation
+        const marketColors = {
+            'Armenia': '#4285f4',
+            'Belgium': '#34a853',
+            'Bahrain': '#fbbc04',
+            'Canada': '#ea4335',
+            'Netherlands': '#9c27b0',
+            'Spain': '#00bcd4',
+            'South Korea': '#ff9800',
+            'Egypt': '#795548',
+            'Kazakhstan': '#607d8b',
+            'Oman': '#8bc34a',
+            'Japan': '#3f51b5',
+            'Poland': '#009688',
+            'Qatar': '#ff5722',
+            'Romania': '#673ab7',
+            'Uzbekistan': '#e91e63'
+        };
+
+        // Sample data for testing
+        const testData = {
+            latestData: {
+                'Armenia': { awareness: 41.0, familiarity: 24.1, consideration: 20.5, intent: 13.1 },
+                'Belgium': { awareness: 66.0, familiarity: 62.9, consideration: 25.5, intent: 12.4 },
+                'Bahrain': { awareness: 93.6, familiarity: 59.7, consideration: 49.9, intent: 31.6 },
+                'Canada': { awareness: 30.3, familiarity: 22.4, consideration: 15.6, intent: 7.5 },
+                'Netherlands': { awareness: 63.7, familiarity: 40.5, consideration: 31.3, intent: 16.0 },
+                'Spain': { awareness: 51.0, familiarity: 44.2, consideration: 24.1, intent: 8.1 },
+                'South Korea': { awareness: 27.6, familiarity: 30.0, consideration: 18.9, intent: 6.7 },
+                'Egypt': { awareness: 78.9, familiarity: 56.3, consideration: 26.9, intent: 16.3 },
+                'Kazakhstan': { awareness: 35.5, familiarity: 27.8, consideration: 16.3, intent: 9.3 },
+                'Oman': { awareness: 91.5, familiarity: 69.5, consideration: 55.1, intent: 37.1 },
+                'Japan': { awareness: 38.2, familiarity: 9.9, consideration: 15.5, intent: 8.5 },
+                'Poland': { awareness: 61.3, familiarity: 30.6, consideration: 28.0, intent: 11.7 },
+                'Qatar': { awareness: 87.8, familiarity: 55.3, consideration: 44.5, intent: 23.7 },
+                'Romania': { awareness: 68.4, familiarity: 27.9, consideration: 19.5, intent: 6.8 },
+                'Uzbekistan': { awareness: 44.6, familiarity: 26.6, consideration: 21.1, intent: 10.3 }
+            },
+            markets: {
+                'Armenia': { awarenessGrowth: 7.5, familiarityGrowth: 4.2, considerationGrowth: 5.6, intentGrowth: 0.9 },
+                'Belgium': { awarenessGrowth: 2.5, familiarityGrowth: 40.4, considerationGrowth: 3.9, intentGrowth: 1.1 },
+                'Bahrain': { awarenessGrowth: 2.7, familiarityGrowth: 19.1, considerationGrowth: 5.0, intentGrowth: 5.9 },
+                'Canada': { awarenessGrowth: 8.4, familiarityGrowth: 12.4, considerationGrowth: 2.6, intentGrowth: 1.8 },
+                'Netherlands': { awarenessGrowth: 6.6, familiarityGrowth: 9.1, considerationGrowth: 6.1, intentGrowth: 3.3 },
+                'Spain': { awarenessGrowth: 6.0, familiarityGrowth: 18.7, considerationGrowth: 5.3, intentGrowth: 3.5 },
+                'South Korea': { awarenessGrowth: 2.6, familiarityGrowth: 4.0, considerationGrowth: 4.9, intentGrowth: 0.8 },
+                'Egypt': { awarenessGrowth: 4.7, familiarityGrowth: 14.4, considerationGrowth: 3.2, intentGrowth: 1.5 },
+                'Kazakhstan': { awarenessGrowth: 9.1, familiarityGrowth: 13.3, considerationGrowth: 4.6, intentGrowth: 3.1 },
+                'Oman': { awarenessGrowth: 2.8, familiarityGrowth: 22.3, considerationGrowth: 7.6, intentGrowth: 0.5 },
+                'Japan': { awarenessGrowth: 0.0, familiarityGrowth: 0.0, considerationGrowth: 0.0, intentGrowth: 0.0 },
+                'Poland': { awarenessGrowth: 5.5, familiarityGrowth: 12.3, considerationGrowth: 5.7, intentGrowth: 3.2 },
+                'Qatar': { awarenessGrowth: 3.3, familiarityGrowth: 19.3, considerationGrowth: 4.5, intentGrowth: 4.3 },
+                'Romania': { awarenessGrowth: 4.2, familiarityGrowth: 10.7, considerationGrowth: 2.9, intentGrowth: 1.5 },
+                'Uzbekistan': { awarenessGrowth: 5.6, familiarityGrowth: 8.4, considerationGrowth: 5.6, intentGrowth: 4.6 }
+            }
+        };
+
+        // Load the quadrantChart.js script
+        const script = document.createElement('script');
+        script.src = 'quadrantChart.js';
+        script.onload = function() {
+            // Initialize the chart when the script is loaded
+            createMarketQuadrantChart('market-quadrant-chart', testData);
+        };
+        document.head.appendChild(script);
+    </script>
+</body>
+</html>
